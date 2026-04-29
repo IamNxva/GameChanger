@@ -17,6 +17,7 @@
       <li><a href="#features">Features</a></li>
       <li><a href="#impact">Impact</a></li>
       <li><a href="#compare">Compare</a></li>
+      <li><a href="#download">Download App</a></li>
       <li><a href="#contact" class="nav-cta">Get Early Access</a></li>
     </ul>
   </nav>
@@ -40,7 +41,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="2O7A1079.jpg" alt="GameChanger adaptive controller" />
+      <img src="images/2O7A1079.jpg" alt="GameChanger adaptive controller" />
     </div>
   </section>
 
@@ -58,7 +59,7 @@
         </p>
       </div>
       <div class="story-img">
-        <img src="2O7A1068.jpg" alt="Controller close-up" />
+        <img src="images/2O7A1068.jpg" alt="Controller close-up" />
       </div>
     </div>
   </section>
@@ -68,9 +69,9 @@
     <p class="section-label center">The Controller</p>
     <h2 class="center">One complete system.<br />Works in minutes.</h2>
     <div class="product-gallery">
-      <img src="2O7A1070.jpg" alt="GameChanger controller top view" />
-      <img src="2O7A1071-2.jpg" alt="GameChanger controller angle view" />
-      <img src="2O7A1091.jpg" alt="GameChanger controller detail" />
+      <img src="images/2O7A1070.jpg" alt="GameChanger controller top view" />
+      <img src="images/2O7A1071-2.jpg" alt="GameChanger controller angle view" />
+      <img src="images/2O7A1091.jpg" alt="GameChanger controller detail" />
     </div>
     <p class="product-caption center">
       3D-printed, fully modular, and powered by a Pro Micro microcontroller — plug in via USB and you're ready to play.
@@ -136,7 +137,7 @@
         </ul>
       </div>
       <div class="how-img">
-        <img src="2O7A1068.jpg" alt="Controller internal view" />
+        <img src="images/2O7A1068.jpg" alt="Controller internal view" />
       </div>
     </div>
   </section>
@@ -249,7 +250,7 @@
         <p class="section-label">Pricing</p>
         <h2>All-in-one.<br />No hidden extras.</h2>
         <p>
-          GameChanger is competitively priced — and gets even more affordable at scale through injection molding and contract manufacturing.
+          Our controller costs <strong>$28.15 per unit</strong> to produce and distribute today. With injection molding and contract manufacturing at scale, we project costs drop to approximately <strong>$22 per unit</strong>.
         </p>
         <p>
           Unlike competing systems that require 15+ additional purchased parts, GameChanger is one complete system — no extras needed.
@@ -310,23 +311,34 @@
     </div>
   </section>
 
+  <!-- ░░ COMPANION APP DOWNLOAD ░░ -->
+  <section class="download" id="download">
+    <div class="download-card">
+      <p class="section-label">Companion App</p>
+      <h2>Download Controller Manager</h2>
+      <p>
+        Install the GameChanger Controller Manager to remap inputs, adjust joystick sensitivity,
+        and save player profiles for your companion GameChanger setup.
+      </p>
+      <a href="GameChanger Controller Manager Setup 1.0.3.exe" class="btn-primary" download>
+        Download GameChanger Controller Manager Setup
+      </a>
+      <p class="download-note">Windows only right now (.exe installer). Mac and Linux support is coming soon.</p>
+    </div>
+  </section>
+
   <!-- ░░ CTA ░░ -->
   <section class="cta" id="contact">
     <h2>Join us in levelling<br />the playing field.</h2>
     <p>For Ms. Qu and millions worldwide, gaming is more than entertainment — it's connection, independence, and even a form of exercise. GameChanger restores that access for all, regardless of dexterity level.</p>
-    <form class="cta-form" onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="Your name" required />
-      <input type="email" placeholder="Your email" required />
-      <select required>
-        <option value="" disabled selected>What are you reaching out about?</option>
-        <option value="early-access">Get Early Access</option>
-        <option value="quote">Request a Quote</option>
-        <option value="partnership">Partnership Inquiry</option>
-        <option value="press">Press / Media</option>
-        <option value="other">Other</option>
-      </select>
-      <textarea placeholder="Your message (optional)" rows="4"></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
+    <form class="cta-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="7065fef3-74a2-4b6d-952d-e6f569e4c81d" />
+      <input type="hidden" name="subject" value="New GameChanger Early Access Signup" />
+      <input type="hidden" name="from_name" value="GameChanger Website" />
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <button type="submit" class="btn-primary">Get Early Access</button>
     </form>
     <p class="cta-note">No spam. We'll reach out when we're ready to ship.</p>
   </section>
@@ -336,14 +348,6 @@
     <span class="nav-logo">Game<span>Changer</span></span>
     <p>Built by Cheren, Ife, Dominic & Jonathan &nbsp;·&nbsp; Patent Pending &nbsp;·&nbsp; © 2026 GameChanger</p>
   </footer>
-
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      form.innerHTML = '<p class="success-msg">✅ You\'re on the list! We\'ll be in touch.</p>';
-    }
-  </script>
 
 </body>
 </html>
