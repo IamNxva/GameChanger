@@ -432,6 +432,32 @@ p:last-child { margin-bottom: 0; }
 .tl-content h3 { color: var(--text); font-size: 1.05rem; margin-bottom: 0.4rem; }
 .tl-content p { font-size: 0.92rem; margin: 0; }
 
+/* ===== DOWNLOAD ===== */
+.download {
+  padding: 6rem 5%;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.download-card {
+  background: linear-gradient(145deg, rgba(124,58,237,0.14), rgba(17,17,24,1) 38%);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  box-shadow: 0 0 45px rgba(124,58,237,0.16);
+}
+.download-card h2 {
+  margin-bottom: 0.8rem;
+}
+.download-card > p {
+  max-width: 700px;
+  margin-bottom: 1.4rem;
+}
+.download-note {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.9rem;
+}
+
 /* ===== CTA ===== */
 .cta {
   padding: 7rem 5%;
@@ -454,7 +480,7 @@ p:last-child { margin-bottom: 0; }
   flex: 1;
   min-width: 200px;
   padding: 0.8rem 1.25rem;
-  border-radius: 16px;
+  border-radius: 50px;
   border: 1px solid var(--border);
   background: var(--bg3);
   color: var(--text);
@@ -463,9 +489,14 @@ p:last-child { margin-bottom: 0; }
   font-family: inherit;
   transition: border-color 0.2s;
 }
-.cta-form input { border-radius: 50px; }
-.cta-form select { border-radius: 50px; width: 100%; flex-basis: 100%; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1.25rem center; }
-.cta-form textarea { border-radius: 16px; width: 100%; flex-basis: 100%; resize: vertical; min-height: 100px; }
+.cta-form textarea {
+  min-width: 100%;
+  border-radius: 16px;
+  resize: vertical;
+}
+.cta-form select {
+  appearance: none;
+}
 .cta-form input:focus,
 .cta-form select:focus,
 .cta-form textarea:focus { border-color: var(--accent); }
