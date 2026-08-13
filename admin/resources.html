@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controller Manager Resources – GameChanger</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; video-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://identity.netlify.com https://unpkg.com; connect-src 'self' https://identity.netlify.com; frame-src https://identity.netlify.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
+  <link rel="stylesheet" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    .resources-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .resources-header {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .resources-header h1 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .resources-header p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .user-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    .user-email {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .logout-btn {
+      background: #f0f0f0;
+      border: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #666;
+      transition: all 0.2s;
+    }
+    .logout-btn:hover {
+      background: #e0e0e0;
+      color: #333;
+    }
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .resource-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .resource-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .resource-card-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 3rem;
+    }
+    .resource-card-content {
+      padding: 1.5rem;
+    }
+    .resource-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .resource-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .download-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 212, 255, 0.2);
+    }
+    .download-btn:active {
+      transform: translateY(0);
+    }
+    .resource-badge {
+      display: inline-block;
+      background: #e8f4f8;
+      color: #0099cc;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .video-container {
+      width: 100%;
+      max-width: 800px;
+    }
+    .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .photo-item {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f0f0f0;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .message-box {
+      background: #e3f2fd;
+      border-left: 4px solid #00d4ff;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 2rem;
+      color: #0099cc;
+    }
+    .not-authenticated {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .not-authenticated h2 {
+      color: #856404;
+      margin-top: 0;
+    }
+    .not-authenticated p {
+      color: #856404;
+      margin-bottom: 1.5rem;
+    }
+    .not-authenticated a {
+      display: inline-block;
+      background: #ffc107;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .not-authenticated a:hover {
+      background: #e0a800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resources-container">
+    <!-- Header -->
+    <div class="resources-header">
+      <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+        <div>
+          <h1>Controller Manager</h1>
+          <p>Exclusive resources for invited members only.</p>
+        </div>
+      </div>
+      <div class="user-info">
+        <div class="user-email">
+          Signed in as: <strong id="userEmail">Loading...</strong>
+        </div>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- Not Authenticated Message (initially hidden) -->
+    <div id="notAuthenticatedBox" class="not-authenticated" style="display: none;">
+      <h2>Access Required</h2>
+      <p>You must be logged in to access these resources. Please sign in with your invitation.</p>
+      <a href="/admin/login">Go to Login</a>
+    </div>
+
+    <!-- Authenticated Content (initially hidden) -->
+    <div id="authenticatedContent" style="display: none;">
+      <div class="message-box">
+        ℹ️ All files and content on this page are encrypted and protected. Do not share your login credentials or download links.
+      </div>
+
+      <!-- PRODUCT DEMO VIDEO -->
+      <div style="margin-bottom: 3rem;">
+        <h2 style="color: white; margin-top: 0;">📹 Product Demo Video</h2>
+        <div class="resource-card">
+          <div class="resource-card-content">
+            <div class="resource-badge">ENCRYPTED</div>
+            <h3>GameChanger Controller Demo</h3>
+            <p>Watch a complete demonstration of the GameChanger adaptive controller in action, including setup, button remapping, and real-world gameplay scenarios.</p>
+            <div class="video-container">
+              <video controls poster="/assets/images/product/2o7a1079.jpg">
+                <source src="/.netlify/functions/download?file=demo-video" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOSE-UP PHOTOS -->
+      <div style="margin-bottom: 3rem;">
+        <h2 style="color: white; margin-top: 0;">📸 Internal Mechanism Close-ups</h2>
+        <p style="color: #ccc; margin-bottom: 1.5rem;">High-resolution photographs of the controller's internal design and modular components.</p>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-card-image">📷</div>
+            <div class="resource-card-content">
+              <div class="resource-badge">ENCRYPTED</div>
+              <h3>Button Array Detail</h3>
+              <p>Close-up of the 25-button modular array showing individual button construction and quick-swap mechanism.</p>
+              <button class="download-btn" onclick="downloadFile('close-up-buttons')">View Photo</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-card-image">📷</div>
+            <div class="resource-card-content">
+              <div class="resource-badge">ENCRYPTED</div>
+              <h3>Joystick Assembly</h3>
+              <p>Detailed view of the joystick mechanical assembly with all three interchangeable attachment points.</p>
+              <button class="download-btn" onclick="downloadFile('close-up-joystick')">View Photo</button>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-card-image">📷</div>
+            <div class="resource-card-content">
+              <div class="resource-badge">ENCRYPTED</div>
+              <h3>Electronics & Wiring</h3>
+              <p>Internal view of the Pro Micro microcontroller and USB HID circuitry powering the controller.</p>
+              <button class="download-btn" onclick="downloadFile('close-up-electronics')">View Photo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSTALLER DOWNLOADS -->
+      <div style="margin-bottom: 3rem;">
+        <h2 style="color: white; margin-top: 0;">⬇️ Controller Manager App Installers</h2>
+        <p style="color: #ccc; margin-bottom: 1.5rem;">Download the latest version of the GameChanger Controller Manager for your operating system.</p>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <div class="resource-card-image">🪟</div>
+            <div class="resource-card-content">
+              <div class="resource-badge">WINDOWS</div>
+              <h3>Controller Manager v7.2</h3>
+              <p>Windows installer for the GameChanger Controller Manager application. Requires Windows 10 or later.</p>
+              <a href="/.netlify/functions/download?file=windows-installer" class="download-btn" download="GameChanger_ControllerManagerApp_Windows_7.2.exe">Download .exe</a>
+            </div>
+          </div>
+
+          <div class="resource-card">
+            <div class="resource-card-image">🍎</div>
+            <div class="resource-card-content">
+              <div class="resource-badge">MAC</div>
+              <h3>Controller Manager v4.0</h3>
+              <p>macOS installer for the GameChanger Controller Manager application. Requires macOS 10.13 or later.</p>
+              <a href="/.netlify/functions/download?file=mac-installer" class="download-btn" download="GameChanger_ControllerManagerApp_Mac_4.0.dmg">Download .dmg</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; padding: 2rem 0; color: #ccc;">
+        <p>Questions? <a href="/" style="color: #00d4ff; text-decoration: none;">Return to GameChanger</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Netlify Identity Script -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Initialize Netlify Identity
+    netlifyIdentity.init();
+
+    // Check authentication on page load
+    function checkAuthentication() {
+      const user = netlifyIdentity.currentUser();
+      const notAuthBox = document.getElementById('notAuthenticatedBox');
+      const authContent = document.getElementById('authenticatedContent');
+      const userEmailSpan = document.getElementById('userEmail');
+
+      if (user) {
+        // User is authenticated
+        userEmailSpan.textContent = user.email;
+        notAuthBox.style.display = 'none';
+        authContent.style.display = 'block';
+      } else {
+        // User is not authenticated
+        notAuthBox.style.display = 'block';
+        authContent.style.display = 'none';
+      }
+    }
+
+    // Handle logout
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      netlifyIdentity.logout();
+      window.location.href = '/admin/login';
+    });
+
+    // Listen for login/logout events
+    netlifyIdentity.on('login', function() {
+      checkAuthentication();
+    });
+
+    netlifyIdentity.on('logout', function() {
+      checkAuthentication();
+    });
+
+    // Initial check
+    checkAuthentication();
+
+    // Helper function to download files (calls the download function)
+    function downloadFile(fileType) {
+      window.location.href = `/.netlify/functions/download?file=${fileType}`;
+    }
+  </script>
+
+</body>
+</html>

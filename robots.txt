@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /.netlify/
+Disallow: /assets/downloads/
+Disallow: /assets/images/sensitive/
+
+# Allow public content
+Allow: /
+
+Sitemap: https://usegamechanger.com/sitemap.xml

@@ -1,0 +1,59 @@
+[build]
+  command = "echo 'Static site build'"
+  publish = "."
+
+# ░░ REDIRECT RULES ░░
+# Protect sensitive folders from direct access
+[[redirects]]
+  from = "/assets/downloads/*"
+  to = "/.netlify/functions/download"
+  status = 200
+  force = true
+  condition = "Role=restricted-user"
+
+[[redirects]]
+  from = "/assets/downloads/*"
+  to = "/admin/login"
+  status = 302
+  force = true
+
+# Protect sensitive photos folder
+[[redirects]]
+  from = "/assets/images/sensitive/*"
+  to = "/.netlify/functions/download"
+  status = 200
+  force = true
+  condition = "Role=restricted-user"
+
+[[redirects]]
+  from = "/assets/images/sensitive/*"
+  to = "/admin/login"
+  status = 302
+  force = true
+
+# Protect gated admin routes - unauthenticated visitors see login
+[[redirects]]
+  from = "/admin/resources"
+  to = "/admin/login"
+  status = 302
+  force = false
+  conditions = { NOT_signed_in = true }
+
+# ░░ HEADERS ░░
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Gated page meta tags (set via HTML, but reinforce with headers)
+[[headers]]
+  for = "/admin/resources"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# ░░ CONTEXT CONFIG (for Identity invites) ░░
+[context.production]
+  environment = { NETLIFY_IDENTITY_URL = "https://usegamechanger.com/.netlify/identity" }
