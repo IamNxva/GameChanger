@@ -1,0 +1,9 @@
+# Netlify deploy bundle should not include oversized media and installer files.
+# These files are too large for a standard static deploy and trigger the
+# "request body too large" upload failure during function packaging.
+# Keep them in external storage or a release host if they still need to be served.
+
+assets/downloads/*.exe
+assets/downloads/*.dmg
+assets/videos/*.mp4
+assets/images/sensitive/**
